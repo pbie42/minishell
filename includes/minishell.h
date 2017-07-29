@@ -16,22 +16,18 @@
 # define TRUE 1
 # define FALSE 0
 
+# include <sys/wait.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include <dirent.h>
-# include <sys/stat.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <sys/ioctl.h>
-# include <pwd.h>
-# include <grp.h>
-# include <time.h>
 # include "../libft/includes/libft.h"
 
 typedef int					t_bool;
 
+int							lsh_cd(char **args);
+int							lsh_help(char **args);
+int							lsh_exit(char **args);
 
 
 #endif

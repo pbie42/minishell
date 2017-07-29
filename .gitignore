@@ -1,3 +1,7 @@
+/src/*.o
+/libft/*.o
+/libft/*.a
+minishell
 .DS_Store
 */.DS_Store
 **/*/.DS_Store

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*      cd.c                                            :+:      :+:    :+:   */
+/*      lsh_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,10 @@
 
 #include "minishell.h"
 
-int						lsh_cd(char **args)
+int						lsh_exit(char **args)
 {
-	if (args[1] == NULL)
-		ft_putendl("lsh: expected arguments to \"cd\"");
-	else
-	{
-		if (chdir(args[1]) != 0)
-			ft_exit("lsh");
-	}
-	return (1);
+	char					**argv;
+
+	argv = args;
+	return (0);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*      exit.c                                          :+:      :+:    :+:   */
+/*      lsh_help.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,10 +12,20 @@
 
 #include "minishell.h"
 
-int						lsh_exit(char **args)
+int						lsh_help(char **args)
 {
-	char				**argv;
+	int					i;
+	char					**agv;
+	char						**builtin_str;
 
-	argv = args;
-	return (0);
+	i = -1;
+	agv = args;
+	builtin_str = ft_strsplit("cd help exit", ' ');
+	ft_putendl("Paul Bie's Minishell");
+	ft_putendl("Type program names and arguments, and hit enter.");
+	ft_putendl("The following are built in:");
+	while(builtin_str[++i] != NULL)
+		ft_putendl(builtin_str[i]);
+	ft_putendl("Use the man command for information on other programs.");
+	return (1);
 }

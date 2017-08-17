@@ -15,6 +15,12 @@ NAME = minishell
 CFLAGS = -g -Wall -Werror -Wextra -I includes
 
 SRC = src/main.c \
+		src/execution.c \
+		src/builtins/builtin_check.c \
+		src/builtins/lsh_cd.c \
+		src/builtins/lsh_help.c \
+		src/builtins/lsh_exit.c \
+
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*      builtin_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/06 15:16:39 by pbie              #+#    #+#             */
-/*   Updated: 2017/08/17 17:38:21 by pbie             ###   ########.fr       */
+/*   Created: 2016/12/11 13:17:17 by pbie              #+#    #+#             */
+/*   Updated: 2016/12/11 15:16:26 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int						main(int ac, char **av, char **ev)
+int						builtin_check(char **args)
 {
-	int					argc;
-	char					**argv;
-	t_shell				shell;
-
-	argc = ac;
-	argv = av;
-	shell.envv = ev;
-	mini_loop();
-	return (0);
+	if (ft_strcmp(args[0], "cd") == 0)
+		return (lsh_cd(args));
+	else if (ft_strcmp(args[0], "help") == 0)
+		return (lsh_help(args));
+	else if (ft_strcmp(args[0], "exit") == 0)
+		return (lsh_exit(args));
+	else
+		return (1);
 }

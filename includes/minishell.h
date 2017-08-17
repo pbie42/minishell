@@ -23,22 +23,21 @@
 # include <string.h>
 # include "../libft/includes/libft.h"
 
-char					*builtin_str[] = {
-	"cd",
-	"help",
-	"exit"
-};
-
-int						(*builtin_func[])(char **) = {
-	&lsh_cd,
-	&lsh_help,
-	&lsh_exit
-};
-
 typedef int					t_bool;
+
+typedef struct				s_shell
+{
+	char						**built_ins;
+	char						**envv;
+}								t_shell;
 
 int							lsh_cd(char **args);
 int							lsh_help(char **args);
 int							lsh_exit(char **args);
+int							lsh_num_builtins(void);
+int							lsh_execute(char **args);
+int							lsh_launch(char **args);
+int							builtin_check(char **args);
+void							mini_loop(void);
 
 #endif

@@ -16,8 +16,7 @@ int						lsh_execute(char **args)
 {
 	int					i;
 
-	i = 0;
-	if(args == NULL || args[0] == NULL)
+	if (args == NULL || args[0] == NULL)
 		return (1);
 	if ((i = builtin_check(args)) == 0)
 			return (i);
@@ -34,12 +33,12 @@ int						lsh_launch(char **args)
 	pid = fork();
 	if (pid == 0)
 	{
-		if(execvp(args[0], args) == -1)
+		if (execvp(args[0], args) == -1)
 			ft_exit("lsh");
 		ft_exit("EXIT_FAILURE");
 		
 	}
-	else if(pid < 0)
+	else if (pid < 0)
 		ft_exit("lsh");
 	else
 	{

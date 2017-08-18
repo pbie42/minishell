@@ -15,6 +15,29 @@
 
 # define TRUE 1
 # define FALSE 0
+# define STOP "\033[0;0m"
+# define EOC "\033[39m"
+# define EOBG "\033[49m"
+# define BOLD "\033[1m"
+# define UNDERLINE "\033[1m"
+# define BLACK "\033[30m"
+# define WHITE "\033[97m"
+# define BLUE "\033[34m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
+# define MAGENTA "\033[35m"
+# define CYAN "\033[36m"
+# define GRAY "\033[37m"
+# define BGBLACK "\033[40m"
+# define BGRED "\033[41m"
+# define BGGREEN "\033[42m"
+# define BGYELLOW "\033[43m"
+# define BGBLUE "\033[44m"
+# define BGMAGENTA "\033[45m"
+# define BGCYAN "\033[46m"
+# define BGLIGHT "\033[47m"
+# define BGGRAY "\033[47m"
 
 # include <sys/wait.h>
 # include <unistd.h>
@@ -27,8 +50,8 @@ typedef int					t_bool;
 
 typedef struct				s_env
 {
-	char						**var;
-	char						**value;
+	char						*var;
+	char						*value;
 	struct s_env			*next;
 	struct s_env			*prev;
 }								t_env;
@@ -38,7 +61,15 @@ typedef struct				s_shell
 	char						**built_ins;
 	char						**envv;
 	char						**args;
+	t_env						*list;
 }								t_shell;
+
+typedef struct				s_lists
+{
+	t_env						*list;
+	t_env						*tmp;
+	t_env						*tmp2;
+}								t_lists;
 
 int							lsh_cd(char **args);
 int							lsh_echo(char **args);
@@ -47,8 +78,9 @@ int							lsh_help(char **args);
 int							lsh_exit(char **args);
 int							lsh_num_builtins(void);
 int							lsh_execute(t_shell shell);
-int							lsh_launch(char **args);
+int							lsh_launch(t_shell shell);
 int							builtin_check(t_shell shell);
 void							mini_loop(t_shell shell);
+t_env							*setup_list(char **ev);
 
 #endif

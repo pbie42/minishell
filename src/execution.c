@@ -21,10 +21,26 @@ int						lsh_execute(t_shell shell)
 	if ((i = builtin_check(shell)) == 1)
 			return (i);
 	else
-		return lsh_launch(shell.args);
+		return lsh_launch(shell);
 }
 
-int						lsh_launch(char **args)
+char						*command_path(char *command)
+{
+	char					*bin;
+	char					*path;
+	size_t				l;
+
+	bin = ft_strdup("/bin/");
+	l = ft_strlen(bin) + ft_strlen(command);
+	path = NULL;
+	if (!(path = (char*)malloc(sizeof(char) * l + 1)))
+		return (NULL);
+	path = ft_strcpy(path, bin);
+	path = ft_strcat(path, command);
+	return (path);
+}
+
+int						lsh_launch(t_shell shell)
 {
 	pid_t					pid;
 	pid_t					wpid;
@@ -33,8 +49,11 @@ int						lsh_launch(char **args)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execvp(args[0], args) == -1)
-			ft_exit("lsh");
+		if (execve(command_path(shell.args[0]), shell.args, shell.envv) == -1)
+		{
+			ft_putstr("minishell: command not found: ");
+			ft_exit(shell.args[0]);
+		}
 		ft_exit("EXIT_FAILURE");
 		
 	}

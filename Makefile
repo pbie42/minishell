@@ -22,6 +22,7 @@ SRC = src/main.c \
 		src/builtins/lsh_env.c \
 		src/builtins/lsh_help.c \
 		src/builtins/lsh_exit.c \
+		src/list/setup_list.c \
 
 
 OBJ = $(SRC:.c=.o)

@@ -25,7 +25,11 @@ int						lsh_help(char **args)
 	ft_putendl("Type program names and arguments, and hit enter.");
 	ft_putendl("The following are built in:");
 	while(builtin_str[++i] != NULL)
+	{
+		ft_putstr(RED);
 		ft_putendl(builtin_str[i]);
+		ft_putstr(STOP);
+	}
 	ft_putendl("Use the man command for information on other programs.");
 	return (1);
 }

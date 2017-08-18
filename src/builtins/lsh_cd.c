@@ -15,11 +15,11 @@
 int						lsh_cd(char **args)
 {
 	if (args[1] == NULL)
-		ft_putendl("lsh: expected arguments to \"cd\"");
+		ft_putendl("minishell: expected arguments to \"cd\"");
 	else
 	{
 		if (chdir(args[1]) != 0)
-			ft_exit("lsh");
+			ft_exit("minishell");
 		
 	}
 	return (1);

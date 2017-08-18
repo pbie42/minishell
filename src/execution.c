@@ -12,16 +12,16 @@
 
 #include "minishell.h"
 
-int						lsh_execute(char **args)
+int						lsh_execute(t_shell shell)
 {
 	int					i;
 
-	if (args == NULL || args[0] == NULL)
+	if (shell.args == NULL || shell.args[0] == NULL)
 		return (1);
-	if ((i = builtin_check(args)) == 0)
+	if ((i = builtin_check(shell)) == 1)
 			return (i);
 	else
-		return lsh_launch(args);
+		return lsh_launch(shell.args);
 }
 
 int						lsh_launch(char **args)
@@ -49,28 +49,25 @@ int						lsh_launch(char **args)
 	return (1);
 }
 
-int						mini_exec(char *line, char **args)
+int						mini_exec(t_shell shell)
 {
 	int					status;
+	char					*line;
 
 	ft_putstr("$> ");
 	ft_get_next_line(0, &line);
-	args = ft_strsplit(line, ' ');
-	status = lsh_execute(args);
+	shell.args = ft_strsplit(line, ' ');
+	status = lsh_execute(shell);
 	free(line);
-	free(args);
+	free(shell.args);
 	return (status);
 }
 
-void						mini_loop(void)
+void						mini_loop(t_shell shell)
 {
-	char					**args;
-	char					*line;
 	int					status;
 
-	line = NULL;
-	args = NULL;
-	status = mini_exec(line, args);
-	while(status)
-		status = mini_exec(line, args);
+	status = mini_exec(shell);
+	while (status)
+		status = mini_exec(shell);
 }

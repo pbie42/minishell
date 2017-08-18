@@ -12,14 +12,18 @@
 
 #include "minishell.h"
 
-int						builtin_check(char **args)
+int						builtin_check(t_shell shell)
 {
-	if (ft_strcmp(args[0], "cd") == 0)
-		return (lsh_cd(args));
-	else if (ft_strcmp(args[0], "help") == 0)
-		return (lsh_help(args));
-	else if (ft_strcmp(args[0], "exit") == 0)
-		return (lsh_exit(args));
+	if (ft_strcmp(shell.args[0], "cd") == 0)
+		return (lsh_cd(shell.args));
+	else if (ft_strcmp(shell.args[0], "help") == 0)
+		return (lsh_help(shell.args));
+	else if (ft_strcmp(shell.args[0], "exit") == 0)
+		return (lsh_exit(shell.args));
+	else if (ft_strcmp(shell.args[0], "echo") == 0)
+		return (lsh_echo(shell.args));
+	else if (ft_strcmp(shell.args[0], "env") == 0)
+		return (lsh_env(shell.envv));
 	else
-		return (1);
+		return (0);
 }

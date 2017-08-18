@@ -21,6 +21,6 @@ int						main(int ac, char **av, char **ev)
 	argc = ac;
 	argv = av;
 	shell.envv = ev;
-	mini_loop();
+	mini_loop(shell);
 	return (0);
 }

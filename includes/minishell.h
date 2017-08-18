@@ -25,19 +25,30 @@
 
 typedef int					t_bool;
 
+typedef struct				s_env
+{
+	char						**var;
+	char						**value;
+	struct s_env			*next;
+	struct s_env			*prev;
+}								t_env;
+
 typedef struct				s_shell
 {
 	char						**built_ins;
 	char						**envv;
+	char						**args;
 }								t_shell;
 
 int							lsh_cd(char **args);
+int							lsh_echo(char **args);
+int							lsh_env(char **env);
 int							lsh_help(char **args);
 int							lsh_exit(char **args);
 int							lsh_num_builtins(void);
-int							lsh_execute(char **args);
+int							lsh_execute(t_shell shell);
 int							lsh_launch(char **args);
-int							builtin_check(char **args);
-void							mini_loop(void);
+int							builtin_check(t_shell shell);
+void							mini_loop(t_shell shell);
 
 #endif

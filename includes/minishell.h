@@ -52,6 +52,7 @@ typedef struct				s_env
 {
 	char						*var;
 	char						*value;
+	char						**paths;
 	struct s_env			*next;
 	struct s_env			*prev;
 }								t_env;
@@ -80,7 +81,9 @@ int							lsh_num_builtins(void);
 int							lsh_execute(t_shell shell);
 int							lsh_launch(t_shell shell);
 int							builtin_check(t_shell shell);
+int							execute_path(t_shell shell);
 void							mini_loop(t_shell shell);
+char							*command_path(char *path, char *command);
 t_env							*setup_list(char **ev);
 
 #endif

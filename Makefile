@@ -16,6 +16,7 @@ CFLAGS = -g -Wall -Werror -Wextra -I includes
 
 SRC = src/main.c \
 		src/execution.c \
+		src/path.c \
 		src/builtins/builtin_check.c \
 		src/builtins/lsh_cd.c \
 		src/builtins/lsh_echo.c \

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*      setup_list.c                                    :+:      :+:    :+:   */
+/*      path.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,46 +12,47 @@
 
 #include "minishell.h"
 
-t_env						*list_single(char *ev)
+char						**get_path(t_env *list)
 {
-	char					**envv;
-	t_env					*single;
+	t_env					*tmp;
 
-	envv = ft_strsplit(ev, '=');
-	if (!(single = (t_env *)malloc(sizeof(t_env))))
-		return (NULL);
-	single->next = NULL;
-	single->prev = NULL;
-	single->var = ft_strdup(envv[0]);
-	single->value = ft_strdup(envv[1]);
-	if (ft_strcmp(single->var, "PATH") == 0)
-		single->paths = ft_strsplit(single->value, ':');
-	else
-		single->paths = NULL;
-	free(envv);
-	return (single);
+	tmp = list;
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->var, "PATH") == 0)
+			return (tmp->paths);
+		tmp = tmp->next;
+	}
+	return (NULL);
 }
 
-t_env						*setup_list(char **ev)
+char						*command_path(char *binpath, char *command)
 {
-	t_lists			l;
-	int				i;
+	char					*bin;
+	char					*path;
+	size_t				l;
+
+	bin = ft_strdup(binpath);
+	l = ft_strlen(bin) + ft_strlen(command) + 1;
+	path = NULL;
+	if (!(path = (char*)malloc(sizeof(char) * l + 1)))
+		return (NULL);
+	path = ft_strcpy(path, bin);
+	path = ft_strcat(path, "/");
+	path = ft_strcat(path, command);
+	free(bin);
+	return (path);
+}
+
+int						execute_path(t_shell shell)
+{
+	char					**paths;
+	int					i;
+	int					x;
 
 	i = 0;
-	if (ev[i] != NULL)
-		l.list = list_single(ev[i++]);
-	else
-		return NULL;
-	l.tmp = l.list;
-	while (ev[i] != NULL)
-	{
-		l.tmp2 = list_single(ev[i]);
-		if (l.tmp2 != NULL)
-		{
-			l.list->next = l.tmp2;
-			l.list = l.list->next;
-		}
+	paths = get_path(shell.list);
+	while (paths[i] && (x = execve(command_path(paths[i], shell.args[0]), shell.args, shell.envv) == -1))
 		i++;
-	}
-	return (l.tmp);
+	return (x);
 }

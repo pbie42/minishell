@@ -1,0 +1,10 @@
+Minishell:
+	Builtins:
+		☐ cd
+		☐ env
+		☐ setenv
+		☐ unsetenv
+		cd:
+			☐ cd - (takes you back to the previously cd'd directory)
+	Command Line:
+		☐ Need to handle added tabs and spaces

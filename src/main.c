@@ -34,5 +34,7 @@ int						main(int ac, char **av, char **ev)
 	shell.envv = ev;
 	shell.list = setup_list(ev);
 	mini_loop(shell);
+	free(shell.args);
+	free_list(shell.list);
 	return (0);
 }

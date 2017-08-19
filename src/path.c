@@ -26,21 +26,34 @@ char						**get_path(t_env *list)
 	return (NULL);
 }
 
+int						check_for_path(char *givenpath)
+{
+	if (givenpath[0] == '/')
+		return (1);
+	else
+		return (0);
+}
+
 char						*command_path(char *binpath, char *command)
 {
 	char					*bin;
 	char					*path;
 	size_t				l;
 
-	bin = ft_strdup(binpath);
-	l = ft_strlen(bin) + ft_strlen(command) + 1;
-	path = NULL;
-	if (!(path = (char*)malloc(sizeof(char) * l + 1)))
-		return (NULL);
-	path = ft_strcpy(path, bin);
-	path = ft_strcat(path, "/");
-	path = ft_strcat(path, command);
-	free(bin);
+	if (check_for_path(command))
+		return (command);
+	else
+	{
+		bin = ft_strdup(binpath);
+		l = ft_strlen(bin) + ft_strlen(command) + 1;
+		path = NULL;
+		if (!(path = (char*)malloc(sizeof(char) * l + 1)))
+			return (NULL);
+		path = ft_strcpy(path, bin);
+		path = ft_strcat(path, "/");
+		path = ft_strcat(path, command);
+		free(bin);
+	}
 	return (path);
 }
 
@@ -54,5 +67,13 @@ int						execute_path(t_shell shell)
 	paths = get_path(shell.list);
 	while (paths[i] && (x = execve(command_path(paths[i], shell.args[0]), shell.args, shell.envv) == -1))
 		i++;
+	// ft_putnbr(x);
+	// ft_putchar('\n');
+	// ft_putchar('\n');
+	// if (x == 1 && (shell.args[0][0] == '.' || shell.args[0][0] == '/'))
+	// {
+	// 	ft_putendl("gettin here");
+	// 	return (lsh_cd(shell.args));
+	// }
 	return (x);
 }

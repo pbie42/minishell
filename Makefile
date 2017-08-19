@@ -24,6 +24,8 @@ SRC = src/main.c \
 		src/builtins/lsh_help.c \
 		src/builtins/lsh_exit.c \
 		src/list/setup_list.c \
+		src/free/free_list.c \
+		src/free/free_table.c \
 
 
 OBJ = $(SRC:.c=.o)

@@ -18,8 +18,10 @@ int						lsh_execute(t_shell shell)
 
 	if (shell.args == NULL || shell.args[0] == NULL)
 		return (1);
-	if ((i = builtin_check(shell)) == 1)
-			return (i);
+	else if (ft_strcmp(shell.args[0], "exit") == 0)
+		return (lsh_exit(shell.args));
+	else if ((i = builtin_check(shell)) == 1)
+		return (i);
 	else
 		return lsh_launch(shell);
 }
@@ -62,7 +64,7 @@ int						mini_exec(t_shell shell)
 	shell.args = ft_strsplit(line, ' ');
 	status = lsh_execute(shell);
 	free(line);
-	free(shell.args);
+	free_table(shell.args);
 	return (status);
 }
 

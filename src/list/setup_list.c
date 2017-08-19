@@ -28,7 +28,7 @@ t_env						*list_single(char *ev)
 		single->paths = ft_strsplit(single->value, ':');
 	else
 		single->paths = NULL;
-	free(envv);
+	free_table(envv);
 	return (single);
 }
 

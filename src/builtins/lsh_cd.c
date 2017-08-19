@@ -12,15 +12,49 @@
 
 #include "minishell.h"
 
-int						lsh_cd(char **args)
+char						*get_home(t_env *list)
 {
-	if (args[1] == NULL)
-		ft_putendl("minishell: expected arguments to \"cd\"");
+	t_env					*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->var, "HOME") == 0)
+			return (tmp->value);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+int						lsh_cd(t_shell shell)
+{
+	if (shell.args[1] == NULL)
+	{
+		// if (shell.args[0][0] == '.' || shell.args[0][0] == '/')
+		// {
+		// 	ft_putendl("gettin in here");
+		// 	if (chdir(shell.args[0]) != 0)
+		// 		ft_exit("minishell");
+		// 	return (-1);
+		// }
+		if (chdir(get_home(shell.list)) != 0)
+			ft_putendl("something wrong");
+	}
 	else
 	{
-		if (chdir(args[1]) != 0)
-			ft_exit("minishell");
-		
+		if (chdir(shell.args[1]) != 0)
+		{
+			if (ft_strcmp(shell.args[1], "~") == 0)
+			{
+				if (chdir(get_home(shell.list)) != 0)
+					ft_putendl("something wrong");
+			}
+			else
+			{
+				ft_putstr("cd: no such file or directory: ");
+				ft_putendl(shell.args[1]);
+			}
+		}
 	}
 	return (1);
 }

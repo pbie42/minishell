@@ -26,6 +26,15 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_gnl
+{
+	char			buf[BUFF_SIZE + 1];
+	int				ret;
+	t_list	*list;
+	t_list			*begin;
+	char			*l;
+}						t_gnl;
+
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalnum(int c);

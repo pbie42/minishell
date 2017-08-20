@@ -1,7 +1,7 @@
 Minishell:
 	Builtins:
 		☐ cd
-		☐ env
+		✔ env @done (8/20/2017, 12:40:21 AM)
 		☐ setenv
 		☐ unsetenv
 		cd:

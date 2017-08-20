@@ -67,9 +67,9 @@ int						execute_path(t_shell shell)
 	paths = get_path(shell.list);
 	while (paths[i] && (x = execve(command_path(paths[i], shell.args[0]), shell.args, shell.envv) == -1))
 		i++;
-	// ft_putnbr(x);
-	// ft_putchar('\n');
-	// ft_putchar('\n');
+	ft_putnbr(x);
+	ft_putchar('\n');
+	ft_putchar('\n');
 	// if (x == 1 && (shell.args[0][0] == '.' || shell.args[0][0] == '/'))
 	// {
 	// 	ft_putendl("gettin here");

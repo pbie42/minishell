@@ -19,7 +19,6 @@ void				free_list(t_env *list)
 	while ((curr = list) != NULL)
 	{
 		list = list->next;
-		ft_putendl(curr->var);
 		if (ft_strcmp(curr->var, "PATH") == 0)
 			free_table(curr->paths);
 		free(curr->var);

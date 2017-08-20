@@ -13,6 +13,18 @@
 #include "libft.h"
 #include <unistd.h>
 
+void				free_gnl_list(t_list *list)
+{
+	t_list			*curr;
+	
+	while ((curr = list) != NULL)
+	{
+		list = list->next;
+		free(curr->content);
+		free(curr);
+	}
+}
+
 static t_list	*ft_findfd(t_list **begin, int fd)
 {
 	t_list	*tmp;
@@ -45,29 +57,29 @@ static char		*ft_freejoin(char *tmp, char *buf, int ret)
 
 int				ft_get_next_line(int const fd, char **line)
 {
-	char			buf[BUFF_SIZE + 1];
-	int				ret;
-	static t_list	*list = NULL;
-	t_list			*begin;
-	char			*l;
+	t_gnl			gnl;
 
-	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
+	gnl.list = NULL;
+	if (fd < 0 || line == NULL || read(fd, gnl.buf, 0) < 0)
 		return (-1);
-	begin = list ? list : NULL;
-	list = ft_findfd(&begin, fd);
-	while (!ft_strchr(list->content, '\n') && (ret = read(fd, buf, BUFF_SIZE)))
-		list->content = ft_freejoin(list->content, buf, ret);
-	ret = 0;
-	while (((char *)list->content)[ret] && ((char *)list->content)[ret] != '\n')
-		++ret;
-	*line = ft_strndup(list->content, ret);
-	if (((char *)list->content)[ret] == '\n')
-		++ret;
-	l = list->content;
-	list->content = ft_strdup(list->content + ret);
-	free(l);
-	list = begin;
-	if (ret > 0)
+	gnl.begin = gnl.list ? gnl.list : NULL;
+	gnl.list = ft_findfd(&gnl.begin, fd);
+	while (!ft_strchr(gnl.list->content, '\n')
+		&& (gnl.ret = read(fd, gnl.buf, BUFF_SIZE)))
+		gnl.list->content = ft_freejoin(gnl.list->content, gnl.buf, gnl.ret);
+	gnl.ret = 0;
+	while (((char *)gnl.list->content)[gnl.ret] 
+		&& ((char *)gnl.list->content)[gnl.ret] != '\n')
+		++gnl.ret;
+	*line = ft_strndup(gnl.list->content, gnl.ret);
+	if (((char *)gnl.list->content)[gnl.ret] == '\n')
+		++gnl.ret;
+	gnl.l = gnl.list->content;
+	gnl.list->content = ft_strdup(gnl.list->content + gnl.ret);
+	free(gnl.l);
+	gnl.list = gnl.begin;
+	free_gnl_list(gnl.list);
+	if (gnl.ret > 0)
 		return (1);
 	return (0);
 }

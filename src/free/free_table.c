@@ -19,6 +19,8 @@ void						free_table(char **array)
 
 	i = 0;
 	x = -1;
+	if (array == NULL || array[0] == NULL)
+		return ;
 	while (array[i] != NULL)
 		i++;
 	while (++x < i)

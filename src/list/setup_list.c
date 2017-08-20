@@ -39,12 +39,19 @@ t_env						*setup_list(char **ev)
 
 	i = 0;
 	if (ev[i] != NULL)
-		l.list = list_single(ev[i++]);
+		l.list = list_single(ev[i]);
 	else
 		return NULL;
+	ft_putendl("      list");
+	ft_putendl(ev[i]);
+	ft_putendl(l.list->var);
+	ft_putendl(l.list->value);
+	i += 1;
 	l.tmp = l.list;
 	while (ev[i] != NULL)
 	{
+		ft_putendl("      list");
+		ft_putendl(ev[i]);
 		l.tmp2 = list_single(ev[i]);
 		if (l.tmp2 != NULL)
 		{

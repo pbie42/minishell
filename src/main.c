@@ -23,6 +23,50 @@
 // 	}
 // }
 
+void						print_table(char **table)
+{
+	int					i;
+
+	i = 0;
+	while (table[i])
+	{
+		ft_putnbr(i);
+		ft_putchar('\n');
+		ft_putendl("     x");
+		// ft_putstr(table[i]);
+		// ft_putchar('\n');
+		ft_putendl(table[i]);
+		i++;
+	}
+	ft_putendl("\n");
+}
+
+char						**setup_envv(char **ev)
+{
+	char					**new_ev;
+	int					i;
+
+	i = 0;
+	while (ev[i])
+		i++;
+	new_ev = (char **)malloc(sizeof(char *) * (i));
+	i = 0;
+	while (ev[i])
+	{
+		ft_putendl("     ev is");
+		ft_putendl(ev[i]);
+		new_ev[i] = strdup(ev[i]);
+		ft_putendl("     new_ev is");
+		ft_putendl(new_ev[i]);
+		i++;
+	}
+	ft_putstr("i is ");
+	ft_putnbr(i);
+	ft_putchar('\n');
+	new_ev[i] = NULL;
+	return (new_ev);
+}
+
 int						main(int ac, char **av, char **ev)
 {
 	int					argc;
@@ -31,10 +75,12 @@ int						main(int ac, char **av, char **ev)
 
 	argc = ac;
 	argv = av;
-	shell.envv = ev;
+	shell.envv = setup_envv(ev);
+	print_table(shell.envv);
 	shell.list = setup_list(ev);
 	mini_loop(shell);
 	free(shell.args);
 	free_list(shell.list);
+	free_table(shell.envv);
 	return (0);
 }

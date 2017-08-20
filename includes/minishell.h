@@ -75,8 +75,9 @@ typedef struct				s_lists
 int							lsh_cd(t_shell shell);
 int							lsh_echo(char **args);
 int							lsh_env(char **env);
-int							lsh_help(char **args);
 int							lsh_exit(char **args);
+int							lsh_help(char **args);
+int							lsh_setenv(t_shell shell);
 int							lsh_num_builtins(void);
 int							lsh_execute(t_shell shell);
 int							lsh_launch(t_shell shell);

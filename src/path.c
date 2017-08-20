@@ -59,35 +59,31 @@ char						*command_path(char *binpath, char *command)
 
 char						**setup_envv(t_env *list)
 {
-	char					**new_ev;
-	int					i;
-	size_t				l;
-	t_env					*tmp;
-	t_env					*tmp2;
+	t_set					set;
 
-	i = 0;
-	tmp = list;
-	while (tmp)
+	set.i = 0;
+	set.tmp = list;
+	while (set.tmp)
 	{
-		tmp = tmp->next;
-		i++;
+		set.tmp = set.tmp->next;
+		set.i++;
 	}
-	new_ev = (char **)malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	tmp2 = list;
-	while (tmp2)
+	set.new_ev = (char **)malloc(sizeof(char *) * (set.i + 1));
+	set.i = 0;
+	set.tmp2 = list;
+	while (set.tmp2)
 	{
-		l = ft_strlen(tmp2->var) + ft_strlen(tmp2->value) + 1;
-		if (!(new_ev[i] = (char*)malloc(sizeof(char) * l + 1)))
+		set.l = ft_strlen(set.tmp2->var) + ft_strlen(set.tmp2->value) + 1;
+		if (!(set.new_ev[set.i] = (char*)malloc(sizeof(char) * set.l + 1)))
 			return (NULL);
-		new_ev[i] = ft_strcpy(new_ev[i], tmp2->var);
-		new_ev[i] = ft_strcat(new_ev[i], "=");
-		new_ev[i] = ft_strcat(new_ev[i], tmp2->value);
-		tmp2 = tmp2->next;
-		i++;
+		set.new_ev[set.i] = ft_strcpy(set.new_ev[set.i], set.tmp2->var);
+		set.new_ev[set.i] = ft_strcat(set.new_ev[set.i], "=");
+		set.new_ev[set.i] = ft_strcat(set.new_ev[set.i], set.tmp2->value);
+		set.tmp2 = set.tmp2->next;
+		set.i++;
 	}
-	new_ev[i] = NULL;
-	return (new_ev);
+	set.new_ev[set.i] = NULL;
+	return (set.new_ev);
 }
 
 int						execute_path(t_shell shell)

@@ -72,6 +72,15 @@ typedef struct				s_lists
 	t_env						*tmp2;
 }								t_lists;
 
+typedef struct				s_set
+{
+	char						**new_ev;
+	int						i;
+	size_t					l;
+	t_env						*tmp;
+	t_env						*tmp2;
+}								t_set;
+
 int							lsh_cd(t_shell shell);
 int							lsh_echo(char **args);
 int							lsh_env(t_env *list);

@@ -21,7 +21,7 @@ int						builtin_check(t_shell shell)
 	else if (ft_strcmp(shell.args[0], "echo") == 0)
 		return (lsh_echo(shell.args));
 	else if (ft_strcmp(shell.args[0], "env") == 0)
-		return (lsh_env(shell.envv));
+		return (lsh_env(shell.list));
 	else if (ft_strcmp(shell.args[0], "setenv") == 0)
 		return (lsh_setenv(shell));
 	else

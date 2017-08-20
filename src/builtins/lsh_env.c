@@ -12,12 +12,18 @@
 
 #include "minishell.h"
 
-int						lsh_env(char **env)
+int						lsh_env(t_env *list)
 {
-	int				i;
+	t_env					*tmp;
 
-	i = -1;
-	while (env[++i] != NULL)
-		ft_putendl(env[i]);
+	tmp = list;
+	while (tmp)
+	{
+		ft_putstr(tmp->var);
+		ft_putchar('=');
+		ft_putendl(tmp->value);
+		tmp = tmp->next;
+	}
+	
 	return (1);
 }

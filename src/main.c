@@ -12,17 +12,6 @@
 
 #include "minishell.h"
 
-// void						print_list(t_env *list)
-// {
-// 	while (list)
-// 	{
-// 		ft_putendl(list->var);
-// 		ft_putstr("\t");
-// 		ft_putendl(list->value);
-// 		list = list->next;
-// 	}
-// }
-
 // void						print_table(char **table)
 // {
 // 	int					i;
@@ -42,6 +31,9 @@ char						**setup_envv(char **ev)
 	while (ev[i])
 		i++;
 	new_ev = (char **)malloc(sizeof(char *) * (i + 1));
+	ft_putstr("i is after setup: ");
+	ft_putnbr(i);
+	ft_putchar('\n');
 	i = -1;
 	while (ev[++i])
 		new_ev[i] = strdup(ev[i]);

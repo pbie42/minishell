@@ -12,17 +12,59 @@
 
 #include "minishell.h"
 
-void					set_existing_envv(t_shell shell, int i)
+void					set_existing_envv(t_shell shell)
 {
 	size_t			l;
+	t_env				*tmp;
 
-	ft_strdel(&shell.envv[i]);
-	l = ft_strlen(shell.args[1]) + ft_strlen(shell.args[2]) + 1;
-	if (!(shell.envv[i] = (char*)malloc(sizeof(char) * l + 1)))
-		ft_exit("Malloc Error");
-	shell.envv[i] = ft_strcpy(shell.envv[i], shell.args[1]);
-	shell.envv[i] = ft_strcat(shell.envv[i], "=");
-	shell.envv[i] = ft_strcat(shell.envv[i], shell.args[2]);
+	tmp = shell.list;
+	while(tmp)
+	{
+		if (ft_strcmp(tmp->var, shell.args[1]) == 0)
+		{
+			ft_strdel(&tmp->value);
+			l = ft_strlen(shell.args[2]);
+			if (!(tmp->value = (char*)malloc(sizeof(char) * l + 1)))
+				ft_exit("Malloc Error");
+			tmp->value = ft_strcat(tmp->value, shell.args[2]);
+			return ;
+		}
+		tmp = tmp->next;
+	}
+}
+
+t_env					*new_envv(char **args)
+{
+	t_env				*tmp;
+
+	if (!(tmp = (t_env *)malloc(sizeof(t_env))))
+		ft_putendl("malloc errror in set_new_envv");
+	tmp->next = NULL;
+	tmp->prev = NULL;
+	tmp->var = ft_strdup(args[1]);
+	tmp->value = ft_strdup(args[2]);
+	return (tmp);
+}
+
+void					set_new_envv(t_env **list, char **args)
+{
+	t_env				*tmp;
+
+	tmp = *list;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new_envv(args);
+}
+
+void						print_list(t_env *list)
+{
+	while (list)
+	{
+		ft_putendl(list->var);
+		ft_putstr("\t");
+		ft_putendl(list->value);
+		list = list->next;
+	}
 }
 
 int					lsh_setenv(t_shell shell)
@@ -40,14 +82,12 @@ int					lsh_setenv(t_shell shell)
 		{
 			if (ft_strcmp(tmp->var, shell.args[1]) == 0)
 				found = TRUE;
-			if (found != TRUE)
-				i++;
 			tmp = tmp->next;
 		}
 		if (found == TRUE)
-			set_existing_envv(shell, i);
-		// else
-		// 	set_new_envv(shell);
+			set_existing_envv(shell);
+		else
+			set_new_envv(&shell.list, shell.args);
 	}
 	return (1);
 }

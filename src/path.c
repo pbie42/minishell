@@ -57,23 +57,51 @@ char						*command_path(char *binpath, char *command)
 	return (path);
 }
 
+char						**setup_envv(t_env *list)
+{
+	char					**new_ev;
+	int					i;
+	size_t				l;
+	t_env					*tmp;
+	t_env					*tmp2;
+
+	i = 0;
+	tmp = list;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	new_ev = (char **)malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	tmp2 = list;
+	while (tmp2)
+	{
+		l = ft_strlen(tmp2->var) + ft_strlen(tmp2->value) + 1;
+		if (!(new_ev[i] = (char*)malloc(sizeof(char) * l + 1)))
+			return (NULL);
+		new_ev[i] = ft_strcpy(new_ev[i], tmp2->var);
+		new_ev[i] = ft_strcat(new_ev[i], "=");
+		new_ev[i] = ft_strcat(new_ev[i], tmp2->value);
+		tmp2 = tmp2->next;
+		i++;
+	}
+	new_ev[i] = NULL;
+	return (new_ev);
+}
+
 int						execute_path(t_shell shell)
 {
 	char					**paths;
+	char					**envv;
 	int					i;
 	int					x;
 
 	i = 0;
+	envv = setup_envv(shell.list);
 	paths = get_path(shell.list);
-	while (paths[i] && (x = execve(command_path(paths[i], shell.args[0]), shell.args, shell.envv) == -1))
+	while (paths[i] && (x = execve(command_path(paths[i], shell.args[0]), shell.args, envv) == -1))
 		i++;
-	ft_putnbr(x);
-	ft_putchar('\n');
-	ft_putchar('\n');
-	// if (x == 1 && (shell.args[0][0] == '.' || shell.args[0][0] == '/'))
-	// {
-	// 	ft_putendl("gettin here");
-	// 	return (lsh_cd(shell.args));
-	// }
+	free_table(envv);
 	return (x);
 }

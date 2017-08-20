@@ -87,7 +87,7 @@ void							mini_loop(t_shell shell);
 void							free_list(t_env *list);
 void							free_table(char **array);
 char							*command_path(char *path, char *command);
-char							**setup_envv(char **ev);
+char							**setup_envv(t_env *list);
 t_env							*setup_list(char **ev);
 
 #endif

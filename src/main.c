@@ -32,7 +32,7 @@ int						main(int ac, char **av, char **ev)
 	argv = av;
 	// shell.envv = setup_envv(ev);
 	shell.list = setup_list(ev);
-	mini_loop(shell);
+	mini_loop(&shell);
 	free(shell.args);
 	free_list(shell.list);
 	// free_table(shell.envv);

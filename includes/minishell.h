@@ -81,19 +81,19 @@ typedef struct				s_set
 	t_env						*tmp2;
 }								t_set;
 
-int							lsh_cd(t_shell shell);
+int							lsh_cd(t_shell *shell);
 int							lsh_echo(char **args);
 int							lsh_env(t_env *list);
 int							lsh_exit(char **args);
 int							lsh_help(char **args);
-int							lsh_setenv(t_shell shell);
-int							lsh_unsetenv(t_shell shell);
+int							lsh_setenv(t_shell *shell);
+int							lsh_unsetenv(t_shell *shell);
 int							lsh_num_builtins(void);
-int							lsh_execute(t_shell shell);
-int							lsh_launch(t_shell shell);
-int							builtin_check(t_shell shell);
-int							execute_path(t_shell shell);
-void							mini_loop(t_shell shell);
+int							lsh_execute(t_shell *shell);
+int							lsh_launch(t_shell *shell);
+int							builtin_check(t_shell *shell);
+int							execute_path(t_shell *shell);
+void							mini_loop(t_shell *shell);
 void							free_list(t_env *list);
 void							free_table(char **array);
 char							*command_path(char *path, char *command);

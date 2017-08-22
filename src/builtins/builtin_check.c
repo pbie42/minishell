@@ -12,19 +12,33 @@
 
 #include "minishell.h"
 
-int						builtin_check(t_shell shell)
+void					print_list(t_env *list)
 {
-	if (ft_strcmp(shell.args[0], "cd") == 0)
+	t_env				*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		ft_putendl(tmp->var);
+		ft_putstr("\t");
+		ft_putendl(tmp->value);
+		tmp = tmp->next;
+	}
+}
+
+int						builtin_check(t_shell *shell)
+{
+	if (ft_strcmp(shell->args[0], "cd") == 0)
 		return (lsh_cd(shell));
-	else if (ft_strcmp(shell.args[0], "help") == 0)
-		return (lsh_help(shell.args));
-	else if (ft_strcmp(shell.args[0], "echo") == 0)
-		return (lsh_echo(shell.args));
-	else if (ft_strcmp(shell.args[0], "env") == 0)
-		return (lsh_env(shell.list));
-	else if (ft_strcmp(shell.args[0], "setenv") == 0)
+	else if (ft_strcmp(shell->args[0], "help") == 0)
+		return (lsh_help(shell->args));
+	else if (ft_strcmp(shell->args[0], "echo") == 0)
+		return (lsh_echo(shell->args));
+	else if (ft_strcmp(shell->args[0], "env") == 0)
+		return (lsh_env(shell->list));
+	else if (ft_strcmp(shell->args[0], "setenv") == 0)
 		return (lsh_setenv(shell));
-	else if (ft_strcmp(shell.args[0], "unsetenv") == 0)
+	else if (ft_strcmp(shell->args[0], "unsetenv") == 0)
 		return (lsh_unsetenv(shell));
 	else
 		return (0);

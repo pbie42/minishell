@@ -56,17 +56,6 @@ void					set_new_envv(t_env **list, char **args)
 	tmp->next = new_envv(args);
 }
 
-void						print_list(t_env *list)
-{
-	while (list)
-	{
-		ft_putendl(list->var);
-		ft_putstr("\t");
-		ft_putendl(list->value);
-		list = list->next;
-	}
-}
-
 int					lsh_setenv(t_shell shell)
 {
 	t_env				*tmp;

@@ -87,6 +87,7 @@ int							lsh_env(t_env *list);
 int							lsh_exit(char **args);
 int							lsh_help(char **args);
 int							lsh_setenv(t_shell shell);
+int							lsh_unsetenv(t_shell shell);
 int							lsh_num_builtins(void);
 int							lsh_execute(t_shell shell);
 int							lsh_launch(t_shell shell);

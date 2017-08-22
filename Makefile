@@ -24,6 +24,7 @@ SRC = src/main.c \
 		src/builtins/lsh_exit.c \
 		src/builtins/lsh_help.c \
 		src/builtins/lsh_setenv.c \
+		src/builtins/lsh_unsetenv.c \
 		src/list/setup_list.c \
 		src/free/free_list.c \
 		src/free/free_table.c \

@@ -12,34 +12,6 @@
 
 #include "minishell.h"
 
-t_env				*free_first_list_item(t_us *us)
-{
-	us->holder = us->tmp->next;
-	free(us->tmp->var);
-	free(us->tmp->value);
-	free(us->tmp);
-	us->tmp = NULL;
-	return (us->holder);
-}
-
-void				free_mid_list_item(t_us *us)
-{
-	us->prev->next = us->tmp->next;
-	free(us->tmp->var);
-	free(us->tmp->value);
-	free(us->tmp);
-	us->tmp = NULL;
-}
-
-void				free_end_list_item(t_us *us)
-{
-	free(us->tmp->var);
-	free(us->tmp->value);
-	free(us->tmp);
-	us->tmp = NULL;
-	us->prev->next = NULL;
-}
-
 t_env					*unset_existing_envv(t_shell *shell)
 {
 	t_us				us;

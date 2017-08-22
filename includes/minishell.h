@@ -103,8 +103,11 @@ int							execute_path(t_shell shell);
 void							mini_loop(t_shell *shell);
 void							free_list(t_env *list);
 void							free_table(char **array);
+void							free_mid_list_item(t_us *us);
+void							free_end_list_item(t_us *us);
 char							*command_path(char *path, char *command);
 char							**setup_envv(t_env *list);
 t_env							*setup_list(char **ev);
+t_env							*free_first_list_item(t_us *us);
 
 #endif

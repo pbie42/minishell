@@ -15,8 +15,6 @@ NAME = minishell
 CFLAGS = -g -Wall -Werror -Wextra -I includes
 
 SRC = src/main.c \
-		src/execution.c \
-		src/path.c \
 		src/builtins/builtin_check.c \
 		src/builtins/lsh_cd.c \
 		src/builtins/lsh_echo.c \
@@ -25,6 +23,8 @@ SRC = src/main.c \
 		src/builtins/lsh_help.c \
 		src/builtins/lsh_setenv.c \
 		src/builtins/lsh_unsetenv.c \
+		src/execution/execution.c \
+		src/execution/path.c \
 		src/free/free_existing_envv.c \
 		src/free/free_list.c \
 		src/free/free_table.c \

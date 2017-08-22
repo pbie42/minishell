@@ -26,33 +26,33 @@ char						*get_home(t_env *list)
 	return (NULL);
 }
 
-int						lsh_cd(t_shell shell)
+int						lsh_cd(t_shell *shell)
 {
-	if (shell.args[1] == NULL)
+	if (shell->args[1] == NULL)
 	{
-		// if (shell.args[0][0] == '.' || shell.args[0][0] == '/')
+		// if (shell->args[0][0] == '.' || shell->args[0][0] == '/')
 		// {
 		// 	ft_putendl("gettin in here");
-		// 	if (chdir(shell.args[0]) != 0)
+		// 	if (chdir(shell->args[0]) != 0)
 		// 		ft_exit("minishell");
 		// 	return (-1);
 		// }
-		if (chdir(get_home(shell.list)) != 0)
+		if (chdir(get_home(shell->list)) != 0)
 			ft_putendl("something wrong");
 	}
 	else
 	{
-		if (chdir(shell.args[1]) != 0)
+		if (chdir(shell->args[1]) != 0)
 		{
-			if (ft_strcmp(shell.args[1], "~") == 0)
+			if (ft_strcmp(shell->args[1], "~") == 0)
 			{
-				if (chdir(get_home(shell.list)) != 0)
+				if (chdir(get_home(shell->list)) != 0)
 					ft_putendl("something wrong");
 			}
 			else
 			{
 				ft_putstr("cd: no such file or directory: ");
-				ft_putendl(shell.args[1]);
+				ft_putendl(shell->args[1]);
 			}
 		}
 	}

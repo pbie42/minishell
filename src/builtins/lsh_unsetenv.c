@@ -12,49 +12,57 @@
 
 #include "minishell.h"
 
-t_env				*free_list_item(t_env *tmp)
+t_env				*free_first_list_item(t_us *us)
 {
-	free(tmp->var);
-	free (tmp->value);
-	free (tmp);
-	return (NULL);
+	us->holder = us->tmp->next;
+	free(us->tmp->var);
+	free(us->tmp->value);
+	free(us->tmp);
+	us->tmp = NULL;
+	return (us->holder);
+}
+
+void				free_mid_list_item(t_us *us)
+{
+	us->prev->next = us->tmp->next;
+	free(us->tmp->var);
+	free(us->tmp->value);
+	free(us->tmp);
+	us->tmp = NULL;
+}
+
+void				free_end_list_item(t_us *us)
+{
+	free(us->tmp->var);
+	free(us->tmp->value);
+	free(us->tmp);
+	us->tmp = NULL;
+	us->prev->next = NULL;
 }
 
 t_env					*unset_existing_envv(t_shell *shell)
 {
-	t_env				*tmp;
-	t_env				*prev;
-	t_env				*holder;
+	t_us				us;
 
-	tmp = shell->list;
-	prev = NULL;
-	while (tmp)
+	us.tmp = shell->list;
+	us.prev = NULL;
+	while (us.tmp)
 	{
-		if (ft_strcmp(tmp->var, shell->args[1]) == 0)
+		if (ft_strcmp(us.tmp->var, shell->args[1]) == 0)
 		{
-			if (prev)
+			if (us.prev)
 			{
-				if (tmp->next)
-				{
-					prev->next = tmp->next;
-					tmp = free_list_item(tmp);
-				}
+				if (us.tmp->next)
+					free_mid_list_item(&us);
 				else
-				{
-					tmp = free_list_item(tmp);
-					prev->next = NULL;
-				}
+					free_end_list_item(&us);
 			}
 			else
-			{
-				holder = tmp->next;
-				tmp = free_list_item(tmp);
-				shell->list = holder;
-			}
+				shell->list = free_first_list_item(&us);
 		}
-		prev = tmp;
-		if (tmp && tmp->next)
-			tmp = tmp->next;
+		us.prev = us.tmp;
+		if (us.tmp && us.tmp->next)
+			us.tmp = us.tmp->next;
 	}
 	return (shell->list);
 }

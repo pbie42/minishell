@@ -81,6 +81,13 @@ typedef struct				s_set
 	t_env						*tmp2;
 }								t_set;
 
+typedef struct				s_us
+{
+	t_env						*tmp;
+	t_env						*prev;
+	t_env						*holder;
+}								t_us;
+
 int							lsh_cd(t_shell *shell);
 int							lsh_echo(char **args);
 int							lsh_env(t_env *list);
@@ -92,7 +99,7 @@ int							lsh_num_builtins(void);
 int							lsh_execute(t_shell *shell);
 int							lsh_launch(t_shell *shell);
 int							builtin_check(t_shell *shell);
-int							execute_path(t_shell *shell);
+int							execute_path(t_shell shell);
 void							mini_loop(t_shell *shell);
 void							free_list(t_env *list);
 void							free_table(char **array);

@@ -56,52 +56,6 @@ int						lsh_launch(t_shell *shell)
 	return (1);
 }
 
-int						spaces_check(char *s)
-{
-	int					i;
-
-	i = 0;
-	while (s[i])
-		if (s[i] != ' ' || s[i] != '\t' || s[i] != '\r' || s[i] != '\v'
-		|| s[i] != '\f' || s[i] != '\n')
-			return (1);
-	return (0);
-}
-
-char						*clean_string(char *s)
-{
-	size_t				letters;
-	char					*tmp;
-	int					i;
-	int					x;
-
-	i = -1;
-	letters = 0;
-	while (s[++i])
-	{
-		ft_putendl("clean_string first while?");
-		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\r' && s[i] != '\v'
-			&& s[i] != '\f' && s[i] != '\n')
-			letters++;
-	}
-	if (!(tmp = (char*)malloc(sizeof(char) * letters + 1)))
-		return (NULL);
-	x = 0;
-	i = -1;
-	while (s[++i])
-	{
-		ft_putendl("clean_string second while?");
-		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\r' && s[i] != '\v'
-			&& s[i] != '\f' && s[i] != '\n')
-		{
-			tmp[x] = s[i];
-			x++;
-		}
-	}
-	tmp[x] = '\0';
-	return (tmp);
-}
-
 void						args_cleanup(t_shell *shell)
 {
 	char					*tmp;
@@ -110,7 +64,6 @@ void						args_cleanup(t_shell *shell)
 	i = -1;
 	while (shell->args[++i])
 	{
-		ft_putendl("args_cleanup while?");
 		if (spaces_check(shell->args[i]))
 		{
 			tmp = clean_string(shell->args[i]);

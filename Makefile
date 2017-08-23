@@ -28,6 +28,8 @@ SRC = src/main.c \
 		src/free/free_existing_envv.c \
 		src/free/free_list.c \
 		src/free/free_table.c \
+		src/helpers/clean_string.c \
+		src/helpers/spaces_check.c \
 		src/list/setup_list.c \
 
 

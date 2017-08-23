@@ -2,11 +2,12 @@ Minishell:
 	Builtins:
 		☐ cd
 		✔ env @done (8/20/2017, 12:40:21 AM)
-		☐ setenv
-		☐ unsetenv
+		✔ setenv @done (8/23/2017, 10:17:54 AM)
+		✔ unsetenv @done (8/23/2017, 10:17:55 AM)
 		cd:
 			☐ "cd -" (takes you back to the previously cd'd directory)
+			☐ PWD in envv needs to change when we change directories
 		setenv:
-			☐ set a previously non existant envv
+			✔ set a previously non existant envv @done (8/23/2017, 10:18:05 AM)
 	Command Line:
-		☐ Need to handle added tabs and spaces
+		✔ Need to handle added tabs and spaces @done (8/23/2017, 10:20:19 AM)

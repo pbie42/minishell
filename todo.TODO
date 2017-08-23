@@ -12,5 +12,11 @@ Minishell:
 			✔ set a previously non existant envv @done (8/23/2017, 10:18:05 AM)
 	Command Line:
 		✔ Need to handle added tabs and spaces @done (8/23/2017, 10:20:19 AM)
+	Bonus:
+		☐ Management of signals and in particular Ctrl-C. The use of global variables is
+			allowed as part of this bonus.
+		☐ Management of execution rights in the PATH
+		☐ Auto completion
+		☐ The separation of commands with ";"
 	Norm:
 		☐ Norminetted

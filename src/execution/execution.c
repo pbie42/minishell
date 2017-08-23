@@ -23,10 +23,7 @@ int						lsh_execute(t_shell *shell)
 	else if ((i = builtin_check(shell)) == 1)
 		return (i);
 	else
-	{
-		ft_putendl("getting here");
 		return lsh_launch(shell);
-	}
 }
 
 int						lsh_launch(t_shell *shell)

@@ -106,6 +106,8 @@ void							free_list(t_env *list);
 void							free_table(char **array);
 void							free_mid_list_item(t_us *us);
 void							free_end_list_item(t_us *us);
+void							free_pwd(t_env *tmp, char *pwd);
+void							free_old_pwd(t_env *tmp, char *pwd);
 char							*command_path(char *path, char *command);
 char							*clean_string(char *s);
 char							**setup_envv(t_env *list);

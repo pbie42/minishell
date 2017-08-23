@@ -27,6 +27,7 @@ SRC = src/main.c \
 		src/execution/path.c \
 		src/free/free_existing_envv.c \
 		src/free/free_list.c \
+		src/free/free_pwds.c \
 		src/free/free_table.c \
 		src/helpers/clean_string.c \
 		src/helpers/spaces_check.c \

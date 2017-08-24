@@ -25,6 +25,27 @@ t_env					*new_envv_alt(char **args)
 	return (tmp);
 }
 
+void					set_existing_envv_alt(t_shell *shell, char **args)
+{
+	size_t				l;
+	t_env				*tmp;
+
+	tmp = shell->list;
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->var, args[0]) == 0)
+		{
+			ft_strdel(&tmp->value);
+			l = ft_strlen(args[1]);
+			if (!(tmp->value = (char*)malloc(sizeof(char) * l + 1)))
+				ft_exit("Malloc Error");
+			tmp->value = ft_strdup(args[1]);
+			return ;
+		}
+		tmp = tmp->next;
+	}
+}
+
 void					set_with_alt_command(t_shell *shell)
 {
 	char				**table;
@@ -36,12 +57,12 @@ void					set_with_alt_command(t_shell *shell)
 	found = FALSE;
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->var, table[1]) == 0)
+		if (ft_strcmp(tmp->var, table[0]) == 0)
 			found = TRUE;
 		tmp = tmp->next;
 	}
 	if (found == TRUE)
-		set_existing_envv(shell);
+		set_existing_envv_alt(shell, table);
 	else
 		set_new_envv(&shell->list, table);
 	free_table(table);

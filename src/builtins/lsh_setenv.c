@@ -26,7 +26,7 @@ void					set_existing_envv(t_shell *shell)
 			l = ft_strlen(shell->args[2]);
 			if (!(tmp->value = (char*)malloc(sizeof(char) * l + 1)))
 				ft_exit("Malloc Error");
-			tmp->value = ft_strcat(tmp->value, shell->args[2]);
+			tmp->value = ft_strdup(shell->args[2]);
 			return ;
 		}
 		tmp = tmp->next;

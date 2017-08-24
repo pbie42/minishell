@@ -10,6 +10,8 @@ Minishell:
 			✔ Need to handle if user unsets PWD and OLDPWD @done (8/23/2017, 5:55:57 PM)
 		setenv:
 			✔ set a previously non existant envv @done (8/23/2017, 10:18:05 AM)
+		unsetenv:
+			☐ Need to handle PATH envv better. If unset and then reset I lose all paths in path list
 	Command Line:
 		✔ Need to handle added tabs and spaces @done (8/23/2017, 10:20:19 AM)
 	Bonus:

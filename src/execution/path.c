@@ -23,6 +23,7 @@ char						**get_path(t_env *list)
 			return (tmp->paths);
 		tmp = tmp->next;
 	}
+	ft_putendl("returning NULL");
 	return (NULL);
 }
 
@@ -98,6 +99,9 @@ int							execute_path(t_shell shell)
 	envv = setup_envv(shell.list);
 	paths = get_path(shell.list);
 	ft_putendl("getting here?");
+	ft_putendl("are we?");
+	ft_putendl(paths[i]);
+	ft_putendl("past this?");
 	while (paths[i])
 	{
 		ft_putendl(paths[i]);
@@ -107,6 +111,7 @@ int							execute_path(t_shell shell)
 			free(path);
 		i++;
 	}
+	ft_putendl("past the while");
 	free(path);
 	free_table(envv);
 	return (x);

@@ -90,15 +90,21 @@ int							execute_path(t_shell shell)
 {
 	char					**paths;
 	char					**envv;
+	char					*path;
 	int						i;
 	int						x;
 
 	i = 0;
 	envv = setup_envv(shell.list);
 	paths = get_path(shell.list);
-	while (paths[i] && (x = execve(command_path(paths[i], shell.args[0]), \
-		shell.args, envv) == -1))
+	while (paths[i])
+	{
+		path = command_path(paths[i], shell.args[0]);
+		if ((x = execve(path, shell.args, envv) == -1))
+			free(path);
 		i++;
+	}
+	free(path);
 	free_table(envv);
 	return (x);
 }

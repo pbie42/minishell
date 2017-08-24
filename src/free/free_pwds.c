@@ -16,7 +16,6 @@ void					free_pwd(t_env *tmp2, char *cwd)
 {
 	free(tmp2->value);
 	tmp2->value = ft_strdup(cwd);
-	// free(cwd);
 }
 
 void					free_old_pwd(t_env *tmp2, char *pwd)

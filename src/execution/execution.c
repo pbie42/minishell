@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*      execution.c                                     :+:      :+:    :+:   */
+/*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/17/09 13:17:17 by pbie              #+#    #+#             */
-/*   Updated: 2017/17/09 15:16:26 by pbie             ###   ########.fr       */
+/*   Created: 2017/09/20 15:16:39 by pbie              #+#    #+#             */
+/*   Updated: 2017/08/24 15:02:31 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int						lsh_execute(t_shell *shell)
 	else if ((i = builtin_check(shell)) == 1)
 		return (i);
 	else
-		return lsh_launch(shell);
+		return (lsh_launch(shell));
 }
 
 int						lsh_launch(t_shell *shell)
 {
-	pid_t					pid;
-	pid_t					wpid;
+	pid_t				pid;
+	pid_t				wpid;
 	int					status;
 
 	pid = fork();
@@ -47,15 +47,15 @@ int						lsh_launch(t_shell *shell)
 	else
 	{
 		wpid = waitpid(pid, &status, WUNTRACED);
-		while(!WIFEXITED(status) && !WIFSIGNALED(status))
+		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 			wpid = waitpid(pid, &status, WUNTRACED);
 	}
 	return (1);
 }
 
-void						args_cleanup(t_shell *shell)
+void					args_cleanup(t_shell *shell)
 {
-	char					*tmp;
+	char				*tmp;
 	int					i;
 
 	i = -1;
@@ -74,7 +74,7 @@ void						args_cleanup(t_shell *shell)
 int						mini_exec(t_shell *shell)
 {
 	int					status;
-	char					*line;
+	char				*line;
 
 	ft_putstr(GREEN);
 	ft_putstr("$> ");
@@ -88,7 +88,7 @@ int						mini_exec(t_shell *shell)
 	return (status);
 }
 
-void						mini_loop(t_shell *shell)
+void					mini_loop(t_shell *shell)
 {
 	int					status;
 

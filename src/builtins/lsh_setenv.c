@@ -6,7 +6,7 @@
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 15:16:39 by pbie              #+#    #+#             */
-/*   Updated: 2017/09/20 15:19:09 by pbie             ###   ########.fr       */
+/*   Updated: 2017/08/24 14:59:04 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void					set_existing_envv(t_shell *shell)
 {
-	size_t			l;
+	size_t				l;
 	t_env				*tmp;
 
 	tmp = shell->list;
-	while(tmp)
+	while (tmp)
 	{
 		if (ft_strcmp(tmp->var, shell->args[1]) == 0)
 		{
@@ -56,11 +56,11 @@ void					set_new_envv(t_env **list, char **args)
 	tmp->next = new_envv(args);
 }
 
-int					lsh_setenv(t_shell *shell)
+int						lsh_setenv(t_shell *shell)
 {
 	t_env				*tmp;
-	int				found;
-	int				i;
+	int					found;
+	int					i;
 
 	found = FALSE;
 	i = 0;

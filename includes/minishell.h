@@ -6,7 +6,7 @@
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 13:17:17 by pbie              #+#    #+#             */
-/*   Updated: 2017/07/08 15:16:26 by pbie             ###   ########.fr       */
+/*   Updated: 2017/08/24 14:43:46 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,43 +50,43 @@ typedef int					t_bool;
 
 typedef struct				s_env
 {
-	char						*var;
-	char						*value;
-	char						**paths;
+	char					*var;
+	char					*value;
+	char					**paths;
 	struct s_env			*next;
 	struct s_env			*prev;
-}								t_env;
+}							t_env;
 
 typedef struct				s_shell
 {
-	char						**built_ins;
-	char						**envv;
-	char						**args;
-	t_env						*list;
-}								t_shell;
+	char					**built_ins;
+	char					**envv;
+	char					**args;
+	t_env					*list;
+}							t_shell;
 
 typedef struct				s_lists
 {
-	t_env						*list;
-	t_env						*tmp;
-	t_env						*tmp2;
-}								t_lists;
+	t_env					*list;
+	t_env					*tmp;
+	t_env					*tmp2;
+}							t_lists;
 
 typedef struct				s_set
 {
-	char						**new_ev;
+	char					**new_ev;
 	int						i;
 	size_t					l;
-	t_env						*tmp;
-	t_env						*tmp2;
-}								t_set;
+	t_env					*tmp;
+	t_env					*tmp2;
+}							t_set;
 
 typedef struct				s_us
 {
-	t_env						*tmp;
-	t_env						*prev;
-	t_env						*holder;
-}								t_us;
+	t_env					*tmp;
+	t_env					*prev;
+	t_env					*holder;
+}							t_us;
 
 int							lsh_cd(t_shell *shell);
 int							lsh_echo(char **args);
@@ -101,17 +101,20 @@ int							lsh_launch(t_shell *shell);
 int							builtin_check(t_shell *shell);
 int							execute_path(t_shell shell);
 int							spaces_check(char *s);
-void							mini_loop(t_shell *shell);
-void							free_list(t_env *list);
-void							free_table(char **array);
-void							free_mid_list_item(t_us *us);
-void							free_end_list_item(t_us *us);
-void							free_pwd(t_env *tmp, char *pwd);
-void							free_old_pwd(t_env *tmp, char *pwd);
-char							*command_path(char *path, char *command);
-char							*clean_string(char *s);
-char							**setup_envv(t_env *list);
-t_env							*setup_list(char **ev);
-t_env							*free_first_list_item(t_us *us);
+void						mini_loop(t_shell *shell);
+void						free_list(t_env *list);
+void						free_table(char **array);
+void						free_mid_list_item(t_us *us);
+void						free_end_list_item(t_us *us);
+void						free_pwd(t_env *tmp, char *pwd);
+void						free_old_pwd(t_env *tmp, char *pwd);
+void						change_pwds(t_shell *shell);
+char						*command_path(char *path, char *command);
+char						*clean_string(char *s);
+char						**setup_envv(t_env *list);
+char						*get_home(t_env *list);
+char						*get_old_pwd(t_env *list);
+t_env						*setup_list(char **ev);
+t_env						*free_first_list_item(t_us *us);
 
 #endif

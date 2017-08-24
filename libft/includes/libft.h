@@ -6,7 +6,7 @@
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 18:25:33 by pbie              #+#    #+#             */
-/*   Updated: 2016/02/12 16:31:55 by pbie             ###   ########.fr       */
+/*   Updated: 2017/08/24 15:21:07 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef struct		s_gnl
 {
 	char			buf[BUFF_SIZE + 1];
 	int				ret;
-	t_list	*list;
+	t_list			*list;
 	t_list			*begin;
 	char			*l;
-}						t_gnl;
+}					t_gnl;
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);

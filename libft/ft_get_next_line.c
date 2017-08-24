@@ -6,7 +6,7 @@
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 15:02:39 by pbie              #+#    #+#             */
-/*   Updated: 2016/02/25 16:10:31 by pbie             ###   ########.fr       */
+/*   Updated: 2017/08/24 14:48:39 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void				free_gnl_list(t_list *list)
 {
 	t_list			*curr;
-	
+
 	while ((curr = list) != NULL)
 	{
 		list = list->next;
@@ -25,9 +25,9 @@ void				free_gnl_list(t_list *list)
 	}
 }
 
-static t_list	*ft_findfd(t_list **begin, int fd)
+static t_list		*ft_findfd(t_list **begin, int fd)
 {
-	t_list	*tmp;
+	t_list			*tmp;
 
 	tmp = *begin;
 	if (tmp)
@@ -45,9 +45,9 @@ static t_list	*ft_findfd(t_list **begin, int fd)
 	return (tmp);
 }
 
-static char		*ft_freejoin(char *tmp, char *buf, int ret)
+static char			*ft_freejoin(char *tmp, char *buf, int ret)
 {
-	char	*l;
+	char			*l;
 
 	l = tmp;
 	tmp = ft_strnjoin(tmp, buf, ret);
@@ -55,7 +55,7 @@ static char		*ft_freejoin(char *tmp, char *buf, int ret)
 	return (tmp);
 }
 
-int				ft_get_next_line(int const fd, char **line)
+int					ft_get_next_line(int const fd, char **line)
 {
 	t_gnl			gnl;
 
@@ -68,7 +68,7 @@ int				ft_get_next_line(int const fd, char **line)
 		&& (gnl.ret = read(fd, gnl.buf, BUFF_SIZE)))
 		gnl.list->content = ft_freejoin(gnl.list->content, gnl.buf, gnl.ret);
 	gnl.ret = 0;
-	while (((char *)gnl.list->content)[gnl.ret] 
+	while (((char *)gnl.list->content)[gnl.ret]
 		&& ((char *)gnl.list->content)[gnl.ret] != '\n')
 		++gnl.ret;
 	*line = ft_strndup(gnl.list->content, gnl.ret);

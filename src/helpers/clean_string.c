@@ -6,16 +6,16 @@
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 13:17:17 by pbie              #+#    #+#             */
-/*   Updated: 2016/12/11 15:16:26 by pbie             ###   ########.fr       */
+/*   Updated: 2017/08/24 15:06:52 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char						*clean_string(char *s)
+char					*clean_string(char *s)
 {
 	size_t				letters;
-	char					*tmp;
+	char				*tmp;
 	int					i;
 	int					x;
 

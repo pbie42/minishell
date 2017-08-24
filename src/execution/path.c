@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*      path.c                                          :+:      :+:    :+:   */
+/*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/18/09 13:17:17 by pbie              #+#    #+#             */
-/*   Updated: 2017/18/09 15:16:26 by pbie             ###   ########.fr       */
+/*   Created: 2017/09/20 15:16:39 by pbie              #+#    #+#             */
+/*   Updated: 2017/08/24 15:02:31 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char						**get_path(t_env *list)
 	return (NULL);
 }
 
-int						check_for_path(char *givenpath)
+int							check_for_path(char *givenpath)
 {
 	if (givenpath[0] == '/')
 		return (1);
@@ -38,7 +38,7 @@ char						*command_path(char *binpath, char *command)
 {
 	char					*bin;
 	char					*path;
-	size_t				l;
+	size_t					l;
 
 	if (check_for_path(command))
 		return (command);
@@ -86,17 +86,18 @@ char						**setup_envv(t_env *list)
 	return (set.new_ev);
 }
 
-int						execute_path(t_shell shell)
+int							execute_path(t_shell shell)
 {
 	char					**paths;
 	char					**envv;
-	int					i;
-	int					x;
+	int						i;
+	int						x;
 
 	i = 0;
 	envv = setup_envv(shell.list);
 	paths = get_path(shell.list);
-	while (paths[i] && (x = execve(command_path(paths[i], shell.args[0]), shell.args, envv) == -1))
+	while (paths[i] && (x = execve(command_path(paths[i], shell.args[0]), \
+		shell.args, envv) == -1))
 		i++;
 	free_table(envv);
 	return (x);

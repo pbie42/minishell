@@ -6,7 +6,7 @@
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/19 15:16:39 by pbie              #+#    #+#             */
-/*   Updated: 2016/05/19 15:19:09 by pbie             ###   ########.fr       */
+/*   Updated: 2017/08/24 14:59:46 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ t_env					*unset_existing_envv(t_shell *shell)
 	return (shell->list);
 }
 
-int					lsh_unsetenv(t_shell *shell)
+int						lsh_unsetenv(t_shell *shell)
 {
 	t_env				*tmp;
-	int				found;
-	int				i;
+	int					found;
+	int					i;
 
 	found = FALSE;
 	i = 0;

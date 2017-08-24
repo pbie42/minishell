@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*      lsh_help.c                                      :+:      :+:    :+:   */
+/*   lsh_help.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/17/09 13:17:17 by pbie              #+#    #+#             */
-/*   Updated: 2017/17/09 15:16:26 by pbie             ###   ########.fr       */
+/*   Created: 2017/09/20 15:16:39 by pbie              #+#    #+#             */
+/*   Updated: 2017/08/24 14:54:31 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int						lsh_help(char **args)
 {
 	int					i;
-	char					**agv;
-	char						**builtin_str;
+	char				**agv;
+	char				**builtin_str;
 
 	i = -1;
 	agv = args;
@@ -24,7 +24,7 @@ int						lsh_help(char **args)
 	ft_putendl("Paul Bie's Minishell");
 	ft_putendl("Type program names and arguments, and hit enter.");
 	ft_putendl("The following are built in:");
-	while(builtin_str[++i] != NULL)
+	while (builtin_str[++i] != NULL)
 	{
 		ft_putstr(RED);
 		ft_putendl(builtin_str[i]);

@@ -15,7 +15,7 @@
 void				free_list(t_env *list)
 {
 	t_env			*curr;
-	
+
 	while ((curr = list) != NULL)
 	{
 		list = list->next;
@@ -23,6 +23,6 @@ void				free_list(t_env *list)
 			free_table(curr->paths);
 		free(curr->var);
 		free(curr->value);
-		free (curr);
+		free(curr);
 	}
 }

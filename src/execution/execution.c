@@ -80,8 +80,10 @@ int						mini_exec(t_shell *shell)
 	ft_putstr("$> ");
 	ft_putstr(STOP);
 	ft_get_next_line(0, &line);
-	shell->args = ft_strsplit(line, ' ');
-	args_cleanup(shell);
+	if (line)
+		shell->args = ft_strsplit(line, ' ');
+	if (shell->args)
+		args_cleanup(shell);
 	status = lsh_execute(shell);
 	free(line);
 	free_table(shell->args);

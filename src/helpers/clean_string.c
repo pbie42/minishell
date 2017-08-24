@@ -23,7 +23,7 @@ char					*clean_string(char *s)
 	letters = 0;
 	while (s[++i])
 		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\r' && s[i] != '\v'
-			&& s[i] != '\f' && s[i] != '\n')
+			&& s[i] != '\f' && s[i] != '\n' && s[i] != '"')
 			letters++;
 	if (!(tmp = (char*)malloc(sizeof(char) * letters + 1)))
 		return (NULL);
@@ -31,7 +31,7 @@ char					*clean_string(char *s)
 	i = -1;
 	while (s[++i])
 		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\r' && s[i] != '\v'
-			&& s[i] != '\f' && s[i] != '\n')
+			&& s[i] != '\f' && s[i] != '\n' && s[i] != '"')
 			tmp[++x] = s[i];
 	tmp[++x] = '\0';
 	return (tmp);

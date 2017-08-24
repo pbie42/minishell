@@ -53,17 +53,18 @@ void					set_new_envv(t_env **list, char **args)
 	tmp = *list;
 	while (tmp->next)
 		tmp = tmp->next;
-	tmp->next = new_envv(args);
+	if (args[2])
+		tmp->next = new_envv(args);
+	else
+		tmp->next = new_envv_alt(args);
 }
 
 int						lsh_setenv(t_shell *shell)
 {
 	t_env				*tmp;
 	int					found;
-	int					i;
 
 	found = FALSE;
-	i = 0;
 	tmp = shell->list;
 	if (shell->args[2])
 	{
@@ -78,5 +79,7 @@ int						lsh_setenv(t_shell *shell)
 		else
 			set_new_envv(&shell->list, shell->args);
 	}
+	if (found == FALSE && check_for_char(shell->args[1], '='))
+		set_with_alt_command(shell);
 	return (1);
 }

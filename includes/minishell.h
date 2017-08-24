@@ -101,6 +101,7 @@ int							lsh_launch(t_shell *shell);
 int							builtin_check(t_shell *shell);
 int							execute_path(t_shell shell);
 int							spaces_check(char *s);
+int							check_for_char(char *s, char c);
 void						mini_loop(t_shell *shell);
 void						free_list(t_env *list);
 void						free_table(char **array);
@@ -109,12 +110,16 @@ void						free_end_list_item(t_us *us);
 void						free_pwd(t_env *tmp, char *pwd);
 void						free_old_pwd(t_env *tmp, char *pwd);
 void						change_pwds(t_shell *shell);
+void						set_with_alt_command(t_shell *shell);
+void						set_existing_envv(t_shell *shell);
+void						set_new_envv(t_env **list, char **args);
 char						*command_path(char *path, char *command);
 char						*clean_string(char *s);
 char						**setup_envv(t_env *list);
 char						*get_home(t_env *list);
 char						*get_old_pwd(t_env *list);
 t_env						*setup_list(char **ev);
+t_env						*new_envv_alt(char **args);
 t_env						*free_first_list_item(t_us *us);
 
 #endif

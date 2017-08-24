@@ -21,6 +21,7 @@ SRC = src/main.c \
 		src/builtins/lsh_env.c \
 		src/builtins/lsh_exit.c \
 		src/builtins/lsh_help.c \
+		src/builtins/lsh_setenv_alt.c \
 		src/builtins/lsh_setenv.c \
 		src/builtins/lsh_unsetenv.c \
 		src/execution/execution.c \
@@ -29,6 +30,7 @@ SRC = src/main.c \
 		src/free/free_list.c \
 		src/free/free_pwds.c \
 		src/free/free_table.c \
+		src/helpers/check_for_char.c \
 		src/helpers/clean_string.c \
 		src/helpers/pwds.c \
 		src/helpers/spaces_check.c \

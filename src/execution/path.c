@@ -110,7 +110,6 @@ int							execute_path(t_shell shell)
 			free(path);
 		i++;
 	}
-	free(path);
 	free_table(envv);
 	return (x);
 }

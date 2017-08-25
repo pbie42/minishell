@@ -101,6 +101,7 @@ int							lsh_launch(t_shell *shell);
 int							builtin_check(t_shell *shell);
 int							execute_path(t_shell shell);
 int							spaces_check(char *s);
+int							alpha_check(char *s);
 int							check_for_char(char *s, char c);
 void						mini_loop(t_shell *shell);
 void						free_list(t_env *list);

@@ -30,6 +30,7 @@ SRC = src/main.c \
 		src/free/free_list.c \
 		src/free/free_pwds.c \
 		src/free/free_table.c \
+		src/helpers/alpha_check.c \
 		src/helpers/check_for_char.c \
 		src/helpers/clean_string.c \
 		src/helpers/pwds.c \

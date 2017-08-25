@@ -80,6 +80,8 @@ int						mini_exec(t_shell *shell)
 	ft_putstr("$> ");
 	ft_putstr(STOP);
 	ft_get_next_line(0, &line);
+	if (!alpha_check(line))
+		return (1);
 	if (line)
 		shell->args = ft_strsplit(line, ' ');
 	if (shell->args)

@@ -107,9 +107,10 @@ int							execute_path(t_shell shell)
 	{
 		path = command_path(paths[i], shell.args[0]);
 		if ((x = execve(path, shell.args, envv) == -1))
-			free(path);
+			ft_putchar('\0');
 		i++;
 	}
+	free(path);
 	free_table(envv);
 	return (x);
 }

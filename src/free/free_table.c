@@ -26,5 +26,4 @@ void						free_table(char **array)
 	while (++x < i)
 		free(array[x]);
 	free(array);
-	ft_putendl("exiting free table");
 }

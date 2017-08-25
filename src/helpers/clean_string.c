@@ -25,6 +25,8 @@ char					*clean_string(char *s)
 		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\r' && s[i] != '\v'
 			&& s[i] != '\f' && s[i] != '\n' && s[i] != '"')
 			letters++;
+	if (letters == 0)
+		return (NULL);
 	if (!(tmp = (char*)malloc(sizeof(char) * letters + 1)))
 		return (NULL);
 	x = -1;
@@ -34,5 +36,8 @@ char					*clean_string(char *s)
 			&& s[i] != '\f' && s[i] != '\n' && s[i] != '"')
 			tmp[++x] = s[i];
 	tmp[++x] = '\0';
+	ft_putstr("letters is: ");
+	ft_putnbr(letters);
+	ft_putchar('\n');
 	return (tmp);
 }

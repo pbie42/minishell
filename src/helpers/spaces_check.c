@@ -16,10 +16,12 @@ int						spaces_check(char *s)
 {
 	int					i;
 
+	ft_putendl("in spaces check");
 	i = 0;
 	while (s[i])
 		if (s[i] != ' ' || s[i] != '\t' || s[i] != '\r' || s[i] != '\v'
 		|| s[i] != '\f' || s[i] != '\n')
 			return (1);
+	ft_putendl("out of spaces while");
 	return (0);
 }

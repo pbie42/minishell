@@ -27,6 +27,8 @@ void					set_existing_envv(t_shell *shell)
 			if (!(tmp->value = (char*)malloc(sizeof(char) * l + 1)))
 				ft_exit("Malloc Error");
 			tmp->value = ft_strdup(shell->args[2]);
+			if (ft_strcmp(tmp->var, "PATH") == 0)
+				tmp->paths = ft_strsplit(tmp->value, ':');
 			return ;
 		}
 		tmp = tmp->next;
@@ -43,6 +45,8 @@ t_env					*new_envv(char **args)
 	tmp->prev = NULL;
 	tmp->var = ft_strdup(args[1]);
 	tmp->value = ft_strdup(args[2]);
+	if (ft_strcmp(tmp->var, "PATH") == 0)
+		tmp->paths = ft_strsplit(tmp->value, ':');
 	return (tmp);
 }
 

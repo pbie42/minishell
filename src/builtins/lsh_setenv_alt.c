@@ -22,6 +22,8 @@ t_env					*new_envv_alt(char **args)
 	tmp->prev = NULL;
 	tmp->var = ft_strdup(args[0]);
 	tmp->value = ft_strdup(args[1]);
+	if (ft_strcmp(tmp->var, "PATH") == 0)
+		tmp->paths = ft_strsplit(tmp->value, ':');
 	return (tmp);
 }
 

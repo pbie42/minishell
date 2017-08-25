@@ -15,6 +15,8 @@
 t_env				*free_first_list_item(t_us *us)
 {
 	us->holder = us->tmp->next;
+	if (ft_strcmp(us->tmp->var, "PATH") == 0)
+		free_table(us->tmp->paths);
 	free(us->tmp->var);
 	free(us->tmp->value);
 	free(us->tmp);
@@ -25,6 +27,8 @@ t_env				*free_first_list_item(t_us *us)
 void				free_mid_list_item(t_us *us)
 {
 	us->prev->next = us->tmp->next;
+	if (ft_strcmp(us->tmp->var, "PATH") == 0)
+		free_table(us->tmp->paths);
 	free(us->tmp->var);
 	free(us->tmp->value);
 	free(us->tmp);
@@ -33,6 +37,8 @@ void				free_mid_list_item(t_us *us)
 
 void				free_end_list_item(t_us *us)
 {
+	if (ft_strcmp(us->tmp->var, "PATH") == 0)
+		free_table(us->tmp->paths);
 	free(us->tmp->var);
 	free(us->tmp->value);
 	free(us->tmp);

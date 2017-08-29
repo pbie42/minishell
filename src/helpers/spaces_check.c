@@ -18,8 +18,8 @@ int						spaces_check(char *s)
 
 	i = -1;
 	while (s[++i])
-		if (s[i] != ' ' || s[i] != '\t' || s[i] != '\r' || s[i] != '\v'
-		|| s[i] != '\f' || s[i] != '\n')
+		if (s[i] == ' ' || s[i] == '\t' || s[i] == '\r' || s[i] == '\v'
+		|| s[i] == '\f' || s[i] == '\n')
 			return (1);
 	return (0);
 }

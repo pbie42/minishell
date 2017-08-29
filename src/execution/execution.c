@@ -71,6 +71,43 @@ void					args_cleanup(t_shell *shell)
 	}
 }
 
+void						char_swap(char *p1, char *p2)
+{
+	char					tmp;
+
+	tmp = *p1;
+	*p1 = *p2;
+	*p2 = tmp;
+}
+
+void						clear_white(char *s)
+{
+	int					i;
+	char					second;
+
+	i = -1;
+	while (s[++i])
+		if (s[i] == '\t' || s[i] == '\r' || s[i] == '\v'
+		|| s[i] == '\f' || s[i] == '\n')
+		{
+			second = ' ';
+			char_swap(&s[i], &second);
+			second = ' ';
+		}
+}
+
+int						check_white(char *s)
+{
+	int					i;
+
+	i = -1;
+	while (s[++i])
+		if (s[i] == '\t' || s[i] == '\r' || s[i] == '\v'
+		|| s[i] == '\f' || s[i] == '\n')
+		return (1);
+	return (0);
+}
+
 int						mini_exec(t_shell *shell)
 {
 	int					status;
@@ -80,6 +117,7 @@ int						mini_exec(t_shell *shell)
 	ft_putstr("$> ");
 	ft_putstr(STOP);
 	ft_get_next_line(0, &line);
+	clear_white(line);
 	if (!alpha_check(line))
 		return (1);
 	if (line)

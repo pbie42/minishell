@@ -61,13 +61,10 @@ void					args_cleanup(t_shell *shell)
 	i = -1;
 	while (shell->args[++i])
 	{
-		if (spaces_check(shell->args[i]))
-		{
-			tmp = clean_string(shell->args[i]);
-			free(shell->args[i]);
-			shell->args[i] = ft_strdup(tmp);
-			free(tmp);
-		}
+		tmp = clean_string(shell->args[i]);
+		free(shell->args[i]);
+		shell->args[i] = ft_strdup(tmp);
+		free(tmp);
 	}
 }
 

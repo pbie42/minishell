@@ -105,14 +105,56 @@ int						check_white(char *s)
 	return (0);
 }
 
+void						prompt(void)
+{
+	
+}
+
+void						sig_handler(int signo)
+{
+	if (signo == SIGKILL)
+	{
+		ft_putstr(GREEN);
+		ft_putchar('\n');
+		ft_putstr("$> ");
+		ft_putstr(STOP);
+	}
+	else if(signo == SIGSTOP)
+	{
+		ft_putstr(GREEN);
+		ft_putchar('\n');
+		ft_putstr("$> ");
+		ft_putstr(STOP);
+	}
+	else if (signo == SIGINT)
+	{
+		ft_putstr(GREEN);
+		ft_putchar('\n');
+		ft_putstr("$> ");
+		ft_putstr(STOP);
+	}
+	else
+	{
+		ft_putstr(GREEN);
+		ft_putchar('\n');
+		ft_putstr("$> ");
+		ft_putstr(STOP);
+	}
+}
+
 int						mini_exec(t_shell *shell)
 {
 	int					status;
 	char				*line;
 
-	ft_putstr(GREEN);
-	ft_putstr("$> ");
-	ft_putstr(STOP);
+	if (signal(SIGINT, sig_handler) == SIG_ERR)
+		ft_putendl("problem");
+	else
+	{
+		ft_putstr(GREEN);
+		ft_putstr("$> ");
+		ft_putstr(STOP);
+	}
 	ft_get_next_line(0, &line);
 	clear_white(line);
 	if (!alpha_check(line))

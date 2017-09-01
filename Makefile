@@ -34,6 +34,7 @@ SRC = src/main.c \
 		src/helpers/check_for_char.c \
 		src/helpers/clean_string.c \
 		src/helpers/pwds.c \
+		src/helpers/semi_check.c \
 		src/helpers/spaces_check.c \
 		src/list/setup_list.c \
 

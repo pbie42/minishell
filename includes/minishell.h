@@ -44,9 +44,11 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <signal.h>
 # include "../libft/includes/libft.h"
 
 typedef int					t_bool;
+typedef void				sigfunc(int);
 
 typedef struct				s_env
 {
@@ -102,6 +104,7 @@ int							builtin_check(t_shell *shell);
 int							execute_path(t_shell shell);
 int							spaces_check(char *s);
 int							alpha_check(char *s);
+int							semi_check(char *s);
 int							check_for_char(char *s, char c);
 void						mini_loop(t_shell *shell);
 void						free_list(t_env *list);

@@ -14,11 +14,22 @@
 
 int						semi_check(char *s)
 {
-	int					x;
+	int					i;
 
-	x = -1;
+	i = -1;
 	while(s[++i])
 		if (s[i] == ';')
 			return (1);
 	return (0);
+}
+
+int						non_semi_check(char *s)
+{
+	int					i;
+
+	i = -1;
+	while(s[++i])
+		if (s[i] != ';' && i > 0)
+			return (0);
+	return (1);
 }

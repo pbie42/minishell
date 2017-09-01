@@ -105,11 +105,6 @@ int						check_white(char *s)
 	return (0);
 }
 
-void						prompt(void)
-{
-	
-}
-
 void						sig_handler(int signo)
 {
 	if (signo == SIGKILL)
@@ -142,6 +137,32 @@ void						sig_handler(int signo)
 	}
 }
 
+int						semi_execute(t_shell *shell, char *line)
+{
+	t_shell				semi_shell;
+	char					**semi_args;
+	int					status;
+	int					i;
+
+	if (non_semi_check(line))
+		return (1);
+	semi_args = ft_strsplit(line, ';');
+	free(line);
+	i = -1;
+	semi_shell.list = shell->list;
+	while(semi_args[++i])
+	{
+		semi_shell.args = ft_strsplit(semi_args[i], ' ');
+		if (semi_shell.args)
+			args_cleanup(&semi_shell);
+		status = lsh_execute(&semi_shell);
+		free_table(semi_shell.args);
+		if (status == 0)
+			return (status);
+	}
+	return (1);
+}
+
 int						mini_exec(t_shell *shell)
 {
 	int					status;
@@ -157,6 +178,8 @@ int						mini_exec(t_shell *shell)
 	}
 	ft_get_next_line(0, &line);
 	clear_white(line);
+	if (semi_check(line))
+		return (semi_execute(shell, line));
 	if (!alpha_check(line))
 		return (1);
 	if (line)

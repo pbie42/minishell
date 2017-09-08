@@ -76,6 +76,7 @@ int						semi_execute(t_shell *shell, char *line)
 		if (status == 0)
 			return (status);
 	}
+	free_table(semi_args);
 	return (1);
 }
 

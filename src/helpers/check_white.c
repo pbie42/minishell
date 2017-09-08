@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semi_check.c                                       :+:      :+:    :+:   */
+/*   check_white.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/19 15:16:39 by pbie              #+#    #+#             */
-/*   Updated: 2017/09/08 13:23:25 by pbie             ###   ########.fr       */
+/*   Created: 2017/09/08 15:16:39 by pbie              #+#    #+#             */
+/*   Updated: 2017/09/08 13:23:05 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int						semi_check(char *s)
+int						check_white(char *s)
 {
 	int					i;
 
 	i = -1;
 	while (s[++i])
-		if (s[i] == ';')
+		if (s[i] == '\t' || s[i] == '\r' || s[i] == '\v'
+		|| s[i] == '\f' || s[i] == '\n')
 			return (1);
 	return (0);
-}
-
-int						non_semi_check(char *s)
-{
-	int					i;
-
-	i = -1;
-	while (s[++i])
-		if (s[i] != ';' && i > 0)
-			return (0);
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 13:17:17 by pbie              #+#    #+#             */
-/*   Updated: 2017/08/24 14:43:46 by pbie             ###   ########.fr       */
+/*   Updated: 2017/09/08 14:53:52 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 # include "../libft/includes/libft.h"
 
 typedef int					t_bool;
-typedef void				sigfunc(int);
 
 typedef struct				s_env
 {
@@ -106,6 +105,7 @@ int							spaces_check(char *s);
 int							alpha_check(char *s);
 int							semi_check(char *s);
 int							non_semi_check(char *s);
+int							check_white(char *s);
 int							check_for_char(char *s, char c);
 void						mini_loop(t_shell *shell);
 void						free_list(t_env *list);
@@ -118,6 +118,9 @@ void						change_pwds(t_shell *shell);
 void						set_with_alt_command(t_shell *shell);
 void						set_existing_envv(t_shell *shell);
 void						set_new_envv(t_env **list, char **args);
+void						clear_white(char *s);
+void						args_cleanup(t_shell *shell);
+void						sig_handler(int signo);
 char						*command_path(char *path, char *command);
 char						*clean_string(char *s);
 char						**setup_envv(t_env *list);

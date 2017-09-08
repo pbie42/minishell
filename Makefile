@@ -31,10 +31,14 @@ SRC = src/main.c \
 		src/free/free_pwds.c \
 		src/free/free_table.c \
 		src/helpers/alpha_check.c \
+		src/helpers/args_cleanup.c \
 		src/helpers/check_for_char.c \
+		src/helpers/check_white.c \
 		src/helpers/clean_string.c \
+		src/helpers/clear_white.c \
 		src/helpers/pwds.c \
 		src/helpers/semi_check.c \
+		src/helpers/sig_handler.c \
 		src/helpers/spaces_check.c \
 		src/list/setup_list.c \
 

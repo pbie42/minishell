@@ -6,7 +6,7 @@
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 15:16:39 by pbie              #+#    #+#             */
-/*   Updated: 2017/08/24 15:02:31 by pbie             ###   ########.fr       */
+/*   Updated: 2017/09/08 13:27:34 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,94 +53,10 @@ int						lsh_launch(t_shell *shell)
 	return (1);
 }
 
-void					args_cleanup(t_shell *shell)
-{
-	char				*tmp;
-	int					i;
-
-	i = -1;
-	while (shell->args[++i])
-	{
-		tmp = clean_string(shell->args[i]);
-		free(shell->args[i]);
-		shell->args[i] = ft_strdup(tmp);
-		free(tmp);
-	}
-}
-
-void						char_swap(char *p1, char *p2)
-{
-	char					tmp;
-
-	tmp = *p1;
-	*p1 = *p2;
-	*p2 = tmp;
-}
-
-void						clear_white(char *s)
-{
-	int					i;
-	char					second;
-
-	i = -1;
-	while (s[++i])
-		if (s[i] == '\t' || s[i] == '\r' || s[i] == '\v'
-		|| s[i] == '\f' || s[i] == '\n')
-		{
-			second = ' ';
-			char_swap(&s[i], &second);
-			second = ' ';
-		}
-}
-
-int						check_white(char *s)
-{
-	int					i;
-
-	i = -1;
-	while (s[++i])
-		if (s[i] == '\t' || s[i] == '\r' || s[i] == '\v'
-		|| s[i] == '\f' || s[i] == '\n')
-		return (1);
-	return (0);
-}
-
-void						sig_handler(int signo)
-{
-	if (signo == SIGKILL)
-	{
-		ft_putstr(GREEN);
-		ft_putchar('\n');
-		ft_putstr("$> ");
-		ft_putstr(STOP);
-	}
-	else if(signo == SIGSTOP)
-	{
-		ft_putstr(GREEN);
-		ft_putchar('\n');
-		ft_putstr("$> ");
-		ft_putstr(STOP);
-	}
-	else if (signo == SIGINT)
-	{
-		ft_putstr(GREEN);
-		ft_putchar('\n');
-		ft_putstr("$> ");
-		ft_putstr(STOP);
-	}
-	else
-	{
-		ft_putstr(GREEN);
-		ft_putchar('\n');
-		ft_putstr("$> ");
-		ft_putstr(STOP);
-	}
-}
-
 int						semi_execute(t_shell *shell, char *line)
 {
 	t_shell				semi_shell;
-	char					**semi_args;
+	char				**semi_args;
 	int					status;
 	int					i;
 
@@ -150,7 +66,7 @@ int						semi_execute(t_shell *shell, char *line)
 	free(line);
 	i = -1;
 	semi_shell.list = shell->list;
-	while(semi_args[++i])
+	while (semi_args[++i])
 	{
 		semi_shell.args = ft_strsplit(semi_args[i], ' ');
 		if (semi_shell.args)

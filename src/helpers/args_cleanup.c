@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semi_check.c                                       :+:      :+:    :+:   */
+/*   args_cleanup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/19 15:16:39 by pbie              #+#    #+#             */
-/*   Updated: 2017/09/08 13:23:25 by pbie             ###   ########.fr       */
+/*   Created: 2017/09/08 15:16:39 by pbie              #+#    #+#             */
+/*   Updated: 2017/09/08 15:02:31 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int						semi_check(char *s)
+void					args_cleanup(t_shell *shell)
 {
+	char				*tmp;
 	int					i;
 
 	i = -1;
-	while (s[++i])
-		if (s[i] == ';')
-			return (1);
-	return (0);
-}
-
-int						non_semi_check(char *s)
-{
-	int					i;
-
-	i = -1;
-	while (s[++i])
-		if (s[i] != ';' && i > 0)
-			return (0);
-	return (1);
+	while (shell->args[++i])
+	{
+		tmp = clean_string(shell->args[i]);
+		free(shell->args[i]);
+		shell->args[i] = ft_strdup(tmp);
+		free(tmp);
+	}
 }

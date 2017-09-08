@@ -16,6 +16,7 @@ NAME = libft.a
 
 SRC = ft_atoi.c \
 	  ft_bzero.c \
+	  ft_char_swap.c \
 	  ft_isalnum.c \
 	  ft_isalpha.c \
 	  ft_isascii.c \

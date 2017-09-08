@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semi_check.c                                       :+:      :+:    :+:   */
+/*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/19 15:16:39 by pbie              #+#    #+#             */
-/*   Updated: 2017/09/08 13:23:25 by pbie             ###   ########.fr       */
+/*   Created: 2017/09/08 15:16:39 by pbie              #+#    #+#             */
+/*   Updated: 2017/09/08 13:28:10 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int						semi_check(char *s)
+void						prompt(void)
 {
-	int					i;
-
-	i = -1;
-	while (s[++i])
-		if (s[i] == ';')
-			return (1);
-	return (0);
+	ft_putstr(GREEN);
+	ft_putchar('\n');
+	ft_putstr("$> ");
+	ft_putstr(STOP);
 }
 
-int						non_semi_check(char *s)
+void						sig_handler(int signo)
 {
-	int					i;
-
-	i = -1;
-	while (s[++i])
-		if (s[i] != ';' && i > 0)
-			return (0);
-	return (1);
+	if (signo == SIGKILL)
+		prompt();
+	else if (signo == SIGSTOP)
+		prompt();
+	else if (signo == SIGINT)
+		prompt();
+	else
+		prompt();
 }

@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   semi_check.c                                       :+:      :+:    :+:   */
+/*   ft_char_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/19 15:16:39 by pbie              #+#    #+#             */
-/*   Updated: 2017/09/08 13:23:25 by pbie             ###   ########.fr       */
+/*   Created: 2017/09/08 15:16:39 by pbie              #+#    #+#             */
+/*   Updated: 2017/09/08 15:02:31 by pbie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int						semi_check(char *s)
+void						char_swap(char *p1, char *p2)
 {
-	int					i;
+	char					tmp;
 
-	i = -1;
-	while (s[++i])
-		if (s[i] == ';')
-			return (1);
-	return (0);
-}
-
-int						non_semi_check(char *s)
-{
-	int					i;
-
-	i = -1;
-	while (s[++i])
-		if (s[i] != ';' && i > 0)
-			return (0);
-	return (1);
+	tmp = *p1;
+	*p1 = *p2;
+	*p2 = tmp;
 }

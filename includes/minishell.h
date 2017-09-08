@@ -121,6 +121,7 @@ void						set_new_envv(t_env **list, char **args);
 void						clear_white(char *s);
 void						args_cleanup(t_shell *shell);
 void						sig_handler(int signo);
+void						prompt_main(void);
 char						*command_path(char *path, char *command);
 char						*clean_string(char *s);
 char						**setup_envv(t_env *list);

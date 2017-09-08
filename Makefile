@@ -36,6 +36,7 @@ SRC = src/main.c \
 		src/helpers/check_white.c \
 		src/helpers/clean_string.c \
 		src/helpers/clear_white.c \
+		src/helpers/prompt_main.c \
 		src/helpers/pwds.c \
 		src/helpers/semi_check.c \
 		src/helpers/sig_handler.c \

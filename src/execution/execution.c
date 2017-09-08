@@ -88,23 +88,22 @@ int						mini_exec(t_shell *shell)
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
 		ft_putendl("problem");
 	else
-	{
-		ft_putstr(GREEN);
-		ft_putstr("$> ");
-		ft_putstr(STOP);
-	}
+		prompt_main();
 	ft_get_next_line(0, &line);
 	clear_white(line);
 	if (semi_check(line))
 		return (semi_execute(shell, line));
 	if (!alpha_check(line))
+	{
+		free(line);
 		return (1);
+	}
 	if (line)
 		shell->args = ft_strsplit(line, ' ');
+	free(line);
 	if (shell->args)
 		args_cleanup(shell);
 	status = lsh_execute(shell);
-	free(line);
 	free_table(shell->args);
 	return (status);
 }

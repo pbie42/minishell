@@ -37,7 +37,8 @@ int						lsh_launch(t_shell *shell)
 	{
 		if (execute_path(*shell) == 1)
 		{
-			ft_putendl("minishell: command not found: ");
+			ft_putstr("minishell: command not found: ");
+			ft_putendl(shell->args[0]);
 			return (0);
 		}
 	}

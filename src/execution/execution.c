@@ -61,7 +61,10 @@ int						semi_execute(t_shell *shell, char *line)
 	int					i;
 
 	if (non_semi_check(line))
+	{
+		free(line);
 		return (1);
+	}
 	semi_args = ft_strsplit(line, ';');
 	free(line);
 	i = -1;

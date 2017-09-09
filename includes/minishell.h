@@ -89,6 +89,14 @@ typedef struct				s_us
 	t_env					*holder;
 }							t_us;
 
+typedef struct				s_s
+{
+	t_shell				semi_shell;
+	char				**semi_args;
+	int					status;
+	int					i;
+}							t_s;
+
 int							lsh_cd(t_shell *shell);
 int							lsh_echo(char **args);
 int							lsh_env(t_env *list);

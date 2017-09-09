@@ -55,31 +55,28 @@ int						lsh_launch(t_shell *shell)
 
 int						semi_execute(t_shell *shell, char *line)
 {
-	t_shell				semi_shell;
-	char				**semi_args;
-	int					status;
-	int					i;
+	t_s					s;
 
 	if (non_semi_check(line))
 	{
 		free(line);
 		return (1);
 	}
-	semi_args = ft_strsplit(line, ';');
+	s.semi_args = ft_strsplit(line, ';');
 	free(line);
-	i = -1;
-	semi_shell.list = shell->list;
-	while (semi_args[++i])
+	s.i = -1;
+	s.semi_shell.list = shell->list;
+	while (s.semi_args[++s.i])
 	{
-		semi_shell.args = ft_strsplit(semi_args[i], ' ');
-		if (semi_shell.args)
-			args_cleanup(&semi_shell);
-		status = lsh_execute(&semi_shell);
-		free_table(semi_shell.args);
-		if (status == 0)
-			return (status);
+		s.semi_shell.args = ft_strsplit(s.semi_args[s.i], ' ');
+		if (s.semi_shell.args)
+			args_cleanup(&s.semi_shell);
+		s.status = lsh_execute(&s.semi_shell);
+		free_table(s.semi_shell.args);
+		if (s.status == 0)
+			return (s.status);
 	}
-	free_table(semi_args);
+	free_table(s.semi_args);
 	return (1);
 }
 

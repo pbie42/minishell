@@ -21,7 +21,7 @@ void						free_table(char **array)
 	x = -1;
 	if (array == NULL || array[0] == NULL)
 		return ;
-	while (array[i] != NULL)
+	while (array[i])
 		i++;
 	while (++x < i)
 		free(array[x]);

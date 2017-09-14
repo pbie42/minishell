@@ -70,6 +70,8 @@ int						lsh_setenv(t_shell *shell)
 
 	found = FALSE;
 	tmp = shell->list;
+	if (!shell->args[1])
+		return (1);
 	if (shell->args[2])
 	{
 		while (tmp)
